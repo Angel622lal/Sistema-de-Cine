@@ -197,67 +197,70 @@ class Promocion:
         for oferta in Promocion.list_descuentos:
             print(f"Promocion: {oferta.descuento}% de descuento en {oferta.producto}, Condiciones: {oferta.condicion}")
 
+#Peliculas
 Peli1 = Pelicula("Matrix", "Ciencia Ficción", "1 hora con 30 min", "Clasificacion A")
 Peli2 = Pelicula("Titanic", "Drama/Romance", "2 horas con 30 min", "Clasificacion B")
 
+#Salas
 Sal1 = Sala(60,"Sala 1","3DX")
-
 Sal2 = Sala(60,"Sala 2","Tradicional")
 
+#Funciones
 funcion1 = Funcion("18:00", Sal1, Peli1)
-#funcion1.consultar_boletos()
 funcion2 = Funcion("20:00", Sal2, Peli2)
-#funcion2.consultar_boletos()
-#Funcion.funciones_del_dia()
 
+#Promociones
 Prom1 = Promocion(20, "Canjear antes del 14 de Febrero", "Boletos")
 Prom2 = Promocion(40, "Canjear antes del 3 de Octubre", "Palomitas")
 
-Us1 = Usuario("Angel", "angel@email.com", "Usuario") 
+#Usuarios
+print("\n--- Registrando Usuarios ---")
+Us1 = Usuario("Angel Camacho", "angel@email.com", "Usuario") 
 Us1.registrar()
-
-'''
-Us2 = Usuario("Ricardo", "ricardo@email.com", "Usuario") 
+Us2 = Usuario("Ricardo Salinas", "ricardo@email.com", "Usuario") 
 Us2.registrar()
-Us3 = Usuario("Mario", "mario@email.com", "Usuario") 
+Us3 = Usuario("Mario Almada", "mario@email.com", "Usuario") 
 Us3.registrar()
-'''
 
-Emp1 = Empleado("Leonel", "leonel@email.com", "Empleado", "Pelicula")
+#Empleados
+print("\n--- Registrando Empleados ---")
+Emp1 = Empleado("Leonel Torres", "leonel@email.com", "Empleado", "Administrador")
 Emp1.registrar()
-Emp2 = Empleado("Manuel", "manuel@email.com", "Empleado", "Funciones") 
+Emp2 = Empleado("Manuel Santos", "manuel@email.com", "Empleado", "Taquillero") 
 Emp2.registrar()
-Emp3 = Empleado("Carlos", "carlos@email.com", "Empleado", "Promociones") 
+Emp3 = Empleado("Carlos Hernandez", "carlos@email.com", "Empleado", "Limpieza") 
 Emp3.registrar()
 
-
+#Registrar pelicula
+print("\n--- Acciones de Empleado Administrador ---")
 Emp1.agregar_pelicula(Peli1)
 Emp1.agregar_pelicula(Peli2)
-#Pelicula.detalles_de_pelicula()
 
+#Registrar funciones
+Emp1.agregar_funcion(funcion1)
+Emp1.agregar_funcion(funcion2)
 
-Emp2.agregar_funcion(funcion1)
-Emp2.agregar_funcion(funcion2)
-#Funcion.funciones_del_dia()
-'''
-Emp3.agregar_promocion(Prom1)
-Emp3.agregar_promocion(Prom2)
-Promocion.mostrar_promociones()
-'''
-Reserva1 = Reservar(Us1, funcion1, ["A1", "B2", "B3"])
+#Registrar promocion
+Emp1.agregar_promocion(Prom1)
+Emp1.agregar_promocion(Prom2)
+
+#Registrar Reserva
+Reserva1 = Reservar(Us2, funcion1, ["A3", "B4", "D7"])
+
+print("\n--- Asientos Disponibles en la funcion ---")
+funcion1.consultar_boletos()
+
+print("\n--- Acceder a promociones ---")
 Us1.acceder_promo(Reserva1, Prom1)
+
+print("\n--- Acciones del Usuario ---")
 Us1.confirmar_reserva(Reserva1)
-funcion1.consultar_boletos()
-Sala.consultar_boletos()
-'''
-Us1.cancelar_reserva(Reserva1)
+
+print("\n--- Asientos Disponibles despues de reservar ---")
 funcion1.consultar_boletos()
 
-Reserva2 = Reservar(Us2, funcion1, ["A3", "B4", "D7"])
-Reserva2.confirmar_reserva()
-
-Us1.confirmar_reserva(Reserva1)
 Us1.cancelar_reserva(Reserva1)
-'''
 
-Promocion.aplicar_promo(Prom1)
+print("\n--- Asientos Disponibles despues de cancelar reserva ---")
+funcion1.consultar_boletos()
+
